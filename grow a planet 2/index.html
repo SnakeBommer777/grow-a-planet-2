@@ -5,7 +5,98 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div id="hud">
+        <div id="planet-size" class="hud-box" aria-live="polite"></div>
+        <div id="money-counter" class="hud-box" aria-live="polite">
+            <span id="money-amount"></span>
+            <span id="money-rate"></span>
+        </div>
+    </div>
+    <button id="shop-toggle" type="button" aria-label="Open shop" aria-expanded="false">🛒</button>
+    <button id="planet-upgrade" type="button" aria-label="Upgrade planet size">⬆<span id="planet-upgrade-cost">$500</span></button>
+    <aside id="shop-panel" aria-label="Planet shop" hidden>
+        <div class="shop-header">
+            <h2>Planet Shop</h2>
+            <button id="shop-close" type="button" aria-label="Close shop">×</button>
+        </div>
+        <section class="tile-summary" aria-label="Placed tile summary">
+            <div class="tile-summary-total">
+                <span>Total tiles placed</span>
+                <strong id="total-tile-count">0</strong>
+            </div>
+            <div class="tile-summary-row grass-summary">
+                <span id="grass-summary-count">Grass · 0 tiles</span>
+                <strong id="grass-tile-income">+$0.00/sec</strong>
+            </div>
+            <div class="tile-summary-row ocean-summary">
+                <span id="ocean-summary-count">Ocean · 0 tiles</span>
+                <strong id="ocean-tile-income">+$0.00/sec</strong>
+            </div>
+            <div class="tile-summary-row forest-summary">
+                <span id="forest-summary-count">Forest · 0 tiles</span>
+                <strong id="forest-tile-income">+$0.00/sec</strong>
+            </div>
+            <div class="tile-summary-row human-summary">
+                <span id="human-summary-count">Humans · 0</span>
+                <strong id="human-tile-income">+$0.00/sec</strong>
+            </div>
+        </section>
+        <nav class="shop-categories" aria-label="Shop categories">
+            <button class="shop-category active" type="button" data-shop-category="tiles" aria-pressed="true">🧩 Tiles</button>
+            <button class="shop-category" type="button" data-shop-category="humans" aria-pressed="false">🧑 Humans</button>
+        </nav>
+        <section class="shop-category-content" id="tile-shop-category" aria-label="Tiles">
+            <div class="shop-item">
+                <div class="grass-icon" aria-hidden="true">🌱</div>
+                <div class="shop-item-info">
+                    <h3>Grass Tile</h3>
+                    <p>Each tile adds $1/sec with no percentage bonus.</p>
+                    <p class="shop-tile-count" id="grass-tile-count">0 placed</p>
+                </div>
+                <button id="buy-grass" type="button">Buy · $10.00</button>
+            </div>
+            <div class="shop-item ocean-shop-item">
+                <div class="grass-icon" aria-hidden="true">🌊</div>
+                <div class="shop-item-info">
+                    <h3>Ocean Tile</h3>
+                    <p>Each tile adds $10/sec with no percentage bonus.</p>
+                    <p class="shop-tile-count" id="ocean-tile-count">0 placed</p>
+                </div>
+                <button id="buy-ocean" type="button">Buy · $100.00</button>
+            </div>
+            <div class="shop-item forest-shop-item">
+                <div class="grass-icon" aria-hidden="true">🌲</div>
+                <div class="shop-item-info">
+                    <h3>Forest Tile</h3>
+                    <p>A natural, tree-covered patch. Humans can walk within the forest.</p>
+                    <p class="shop-tile-count" id="forest-tile-count">0 placed</p>
+                </div>
+                <button id="buy-forest" type="button">Buy · $500.00</button>
+            </div>
+        </section>
+        <section class="shop-category-content" id="human-shop-category" aria-label="Humans" hidden>
+            <div class="shop-item human-shop-item">
+                <div class="grass-icon" aria-hidden="true">🧑</div>
+                <div class="shop-item-info">
+                    <h3>Human</h3>
+                    <p>Walks on grass, forest, and sand and ages over time, but does not earn money.</p>
+                    <p class="shop-tile-count" id="human-count">0 placed · 0 habitat spots</p>
+                </div>
+                <button id="buy-human" type="button">Buy · $50.00</button>
+            </div>
+        </section>
+        <p id="shop-status" role="status">Choose an item to place on your planet.</p>
+    </aside>
+    <aside id="human-details" aria-label="Human details" aria-live="polite" hidden>
+        <div class="human-details-header">
+            <h2 id="human-details-title">Human</h2>
+            <button id="human-details-close" type="button" aria-label="Close human details">×</button>
+        </div>
+        <p id="human-age">Age: 0 / 100 years</p>
+        <p id="human-age-bonus">Income: Humans do not earn money.</p>
+    </aside>
+    <div id="controls-hint">Hold right-click to look around · WASD to move</div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="script.js"></script>
+    <script src="main.js" defer></script>
 </body>
 </html>
